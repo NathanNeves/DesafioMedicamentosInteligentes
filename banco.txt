@@ -1,0 +1,65 @@
+/* Lógico_1: */
+
+CREATE TABLE Usuario (
+    email varchar(255),
+    nome VARCHAR(50),
+    data_de_Nascimento DATE,
+    telefone VARCHAR(16),
+    id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE Carrinho (
+    id SERIAL PRIMARY KEY,
+    quantidade INT,
+    fk_Usuario_Id int,
+    fk_Produtos_Id INT
+);
+
+CREATE TABLE Endereco (
+    enderecoId Serial PRIMARY KEY,
+    logradouro VARCHAR(255),
+    localidade VARCHAR(100),
+    cep VARCHAR(10),
+    fk_Usuario_Id int
+);
+
+CREATE TABLE Produtos (
+    nome VARCHAR(50),
+    codProduto VARCHAR(255),
+    id Serial PRIMARY KEY,
+    quantidade INT
+);
+
+CREATE TABLE Compra (
+    fk_Usuario_Id int,
+    fk_Produtos_Id INT,
+    quantidade BIGINT,
+    transacao boolean,
+    entregue boolean,
+    dataentrega Date
+);
+ 
+ALTER TABLE Carrinho ADD CONSTRAINT FK_Carrinho_2
+    FOREIGN KEY (fk_Usuario_Id)
+    REFERENCES Usuario (id)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Carrinho ADD CONSTRAINT FK_Carrinho_3
+    FOREIGN KEY (fk_Produtos_Id)
+    REFERENCES Produtos (id)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Endereco ADD CONSTRAINT FK_Endereco_2
+    FOREIGN KEY (fk_Usuario_Id)
+    REFERENCES Usuario (id)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Compra ADD CONSTRAINT FK_Compra_1
+    FOREIGN KEY (fk_Usuario_Id)
+    REFERENCES Usuario (id)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
+    FOREIGN KEY (fk_Produtos_Id)
+    REFERENCES Produtos (id)
+    ON DELETE SET NULL;

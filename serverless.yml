@@ -1,0 +1,45 @@
+service: MinionStore
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: sa-east-1
+functions:
+  app:  
+    handler: index.handler
+    events: 
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+  getProdutos:
+    handler: index.handler
+    events:
+      - http: 'GET /listarProdutos'
+  verificarCarrinho:
+    handler: index.handler
+    events:
+      - http: 'POST /verificarCarrinho'
+  cadastrarUsuario:
+    handler: index.handler
+    events:
+      - http: 'POST /cadastrarUsuario'
+  verificarCompra:
+    handler: index.handler
+    events:
+      - http: 'POST /verificarCompra'
+  verificarCep:
+    handler: index.handler
+    events:
+      - http: 'GET /verificarCep'
+  adicionarCarrinho:
+    handler: index.handler
+    events:
+      - http: 'POST /adicionarCarrinho/'
+  logar:
+    handler: index.handler
+    events:
+      - http: 'POST /logar'
+  finalizarCompra:
+    handler: index.handler
+    events:
+      - http: 'POST /finalizarCompra'
