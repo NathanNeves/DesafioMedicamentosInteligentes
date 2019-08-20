@@ -92,8 +92,8 @@ router.post('/finalizarCompra', async (req,res)=>{
         mensagem+=`\nSuas despesas são de: R$${saldo}`;
         //adicionar todos os elementos na tabela de compras
         const buyResponse = await connection.finalizarCompra(itens);
-        const Domain = "sandbox92965f205e7140da8df13b2379125493.mailgun.org";
-        const key = "37275376cd52294d30acd0a47fa2c3d0-898ca80e-abf2f32c";
+        const Domain = "";
+        const key = "";
         const mg = mailgun({apiKey:key,domain:Domain});
         data = {
             from: 'Loja Minions <nathann-s@outlook.com>',
